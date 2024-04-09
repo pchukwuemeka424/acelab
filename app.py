@@ -465,6 +465,10 @@ def signup():
 def check():
     return render_template('check.html')
 
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
