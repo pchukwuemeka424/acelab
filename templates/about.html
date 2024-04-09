@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}
+About Us
+{% endblock %}
+{% block content %}
+<style>
+    button{
+        background-color: white ;
+        color: black;
+    }
+</style>
+
+<div class="container p-5">
+<div class="row">
+    <div class="col-sm-8">
+        <button class="collapsible">What is this website for?</button>
+        <div class="content">
+            <p>This website is designed to help users determine whether a given URL is potentially a phishing website or not. Phishing websites are malicious sites designed to deceive users into revealing sensitive information such as usernames, passwords, or credit card details.</p>
+        </div>
+        
+        <button class="collapsible">How does the website work?</button>
+        <div class="content">
+            <p>The website uses machine learning algorithms to analyze various features of the provided URL and determine the likelihood that it is a phishing website. These features include characteristics like URL length, presence of HTTPS, domain age, and other indicators of suspicious activity</p>
+        </div>
+        
+        <button class="collapsible">How accurate is the phishing detection?</button>
+        <div class="content">
+            <p>The accuracy of the phishing detection depends on several factors, including the quality of the dataset used for training the machine learning model and the effectiveness of the features extracted from the URLs. Our team continuously works to improve the accuracy of the detection algorithm.</p>
+        </div>
+        
+        <button class="collapsible">Can I trust the results provided by the website?</button>
+        <div class="content">
+            <p>While our machine learning model is trained to identify phishing websites, it's important to remember that no detection method is foolproof. We recommend using the results provided by the website as one of several factors in your decision-making process when assessing the legitimacy of a URL.</p>
+        </div>
+        
+        <button class="collapsible">What should I do if the website incorrectly identifies a legitimate URL as phishing?</button>
+        <div class="content">
+            <p>If you believe that a legitimate URL has been incorrectly flagged as phishing, please let us know. We value user feedback and continuously strive to improve the accuracy of our detection algorithm.</p>
+        </div>
+        
+        <button class="collapsible">Is my data safe when using this website?</button>
+        <div class="content">
+            <p>We take user privacy and data security seriously. The URLs entered into the website are not stored or logged in any way. Additionally, we employ industry-standard security measures to protect the website and its users from potential threats.</p>
+        </div>
+        
+        <button class="collapsible">Can I use the website on mobile devices?</button>
+        <div class="content">
+            <p>Yes, the website is designed to be accessible and responsive across a variety of devices, including desktops, laptops, tablets, and smartphones. Simply visit the website using your device's web browser to use its features.</p>
+        </div>
+        <button class="collapsible">Is the website free to use?</button>
+        <div class="content">
+            <p>Yes, the website is free for all users. We believe in providing accessible tools to help users stay safe online and protect themselves from phishing attacks.</p>
+        </div>
+        <button class="collapsible">How frequently is the website updated?</button>
+        <div class="content">
+            <p>Updates may include improvements to the detection algorithm, bug fixes, and feature enhancements</p>
+        </div>
+        <button class="collapsible">I have more questions or feedback. How can I get in touch with the website's Developer?</button>
+        <div class="content">
+            <p>Please feel free to reach out through the contact form provided on the website</p>
+        </div>
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+</div>
+
+</div>
+
+    {% endblock %}
+
+   

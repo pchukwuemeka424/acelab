@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+Sign Up
+{% endblock %}
+{% block content %}
+<div class="containe shadow-lg"  style="background-color: white;">
+    <div class="col-sm-6 p-5 ">
+        <h1>Reports</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Domain</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in data %}
+                    <tr>
+                        <td>{{ entry.domain }}</td>
+                        <td>{{ entry.status }}</td>
+                        <td>{{ entry.timestamp }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>     
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

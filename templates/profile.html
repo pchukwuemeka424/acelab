@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}
+Sign Up
+{% endblock %}
+{% block content %}
+<div class="containe shadow-lg"  style="background-color: white;">
+    <div class="col-sm-6 p-5 ">
+        <h4>Welcome, {{ username }}!</h4>
+
+
+    <h5>Report Url</h5>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <!-- Add a hidden input field for the username with the current username value -->
+        <input type="hidden" name="username" value="{{ username }}">
+        <div class="form-group">
+            {{ form.domain.label }} {{ form.domain(class="form-control", placeholder="Enter domain") }}
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="status" value="unsafe">
+        </div><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <!-- Display inserted data -->
+    <h2>Inserted Data</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Domain</th>
+                <th>Status</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in user_entries %}
+                <tr>
+                    <td>{{ entry.domain }}</td>
+                    <td>{{ entry.status }}</td>
+                    <td>{{ entry.timestamp }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

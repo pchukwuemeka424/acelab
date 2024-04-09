@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+Sign Up
+{% endblock %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 70vh;">
+        <div class="col-sm-6">
+            <main class="form-signin bg-white shadow-lg ">
+                <form method="POST">
+                    {{ form.csrf_token }}
+                    <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+        
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-warning" role="alert">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+        
+                    <div class=" mb-3">
+                        {{ form.email.label(class="form-label") }}
+                        {{ form.email(class="form-control", placeholder="name@example.com") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.username.label(class="form-label") }}
+                        {{ form.username(class="form-control", placeholder="Username") }}
+                    </div>
+                    <div class=" mb-3">
+                        {{ form.password.label(class="form-label") }}
+                        {{ form.password(class="form-control", placeholder="Password") }}
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                </form>
+            </main>
+        </div>
+    </div>
+
+
+    {% endblock %}
+
+   

@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+
+<div style="height: 80vh;" class=" bg-danger d-flex justify-content-center align-items-center">
+
+<div class="col-sm-6 p-4 text-white">
+    <h4>Check your Threat Level</h4><hr>
+   Cybersecurity threats like phishing attacks pose significant risks to individuals and organizations alike. Phishing, a form of social engineering, involves deceptive tactics to trick users into revealing sensitive information such as login credentials, financial data, or personal details. Assessing your cybersecurity posture regarding phishing vulnerabilities is crucial for safeguarding against potential breaches. Here's a brief guide to help you evaluate and enhance your defenses:
+<div class="my-2"><a href="{{ url_for('assesement') }}"><button class="btn btn-lg bg-white text-dark">Assessment Test</button></a></div>
+</div>
+</div>
+
+{% endblock %}

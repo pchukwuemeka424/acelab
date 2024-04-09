@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+Contact Us
+{% endblock %}
+{% block content %}
+
+<script>
+    function validateForm() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
+
+        if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
+            alert("Please fill in all fields.");
+            return false; // Prevent form submission
+        }
+        // Display success message
+        document.getElementById('success-message').innerHTML = `  <div class="alert alert-success alert-dismissible fade show">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+     Thank you for your Feedback.
+  </div>`;
+
+        // Clear form fields
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('message').value = '';
+
+        return false; // Prevent actual form submission
+    }
+</script>
+<div class="container">
+    <div class="col-sm-6 py-5">
+        <h4>Contact Us</h4>
+        <div>For contact purposes, you can reach us via email at <a href="mailto:s5548386@bournmouth.ac.uk">s5548386@bournmouth.ac.uk</a>. Please feel free to email us with any inquiries, concerns, or feedback, and we'll get back to you as soon as possible.</div>
+        <br> <br>
+        <form method="post" action="/contact" onsubmit="return validateForm()">
+            <label for="name">Name:</label><br>
+            <input class="form-control" type="text" id="name" name="name"><br>
+            <label for="email">Email:</label><br>
+            <input class="form-control" type="email" id="email" name="email"><br>
+    
+            <label for="message">Message:</label><br>
+            <textarea class="form-control" id="message" name="message" rows="4"></textarea><br>
+    
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form><br>
+        <div id="success-message"></div>
+    </div>
+</div>
+{% endblock %}

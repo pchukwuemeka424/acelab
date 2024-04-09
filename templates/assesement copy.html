@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% block title %}
+assesement
+{% endblock %}
+{% block content %}
+<style>
+    button{
+        background-color: green;
+        color: white;
+        border: none;
+    }
+</style>
+  <div class="text-white bg-success">
+    <div class="quiz-container">
+      <h1>Free Assessment Test</h1>
+      <p>User Session: {{ user_session }}</p>
+      <form id="quiz-form" action="#">
+        <!-- Question 1 -->
+        <div class="question" id="question1">
+          <p>Scenario: You receive an email from a sender claiming to be your bank, asking you to update your account information by clicking on a link.</p>
+          <p>1. Which of the following indicators can suggest a phishing URL?</p>
+          <input type="radio" name="question1" value="A"> A. Misspelled domain name<br>
+          <input type="radio" name="question1" value="B"> B. Use of HTTPS<br>
+          <input type="radio" name="question1" value="C"> C. Short URL<br>
+          <input type="radio" name="question1" value="D"> D. All of the above<br>
+          <button type="button"   onclick="showNextQuestion(2)">Next</button>
+        </div>
+  
+        <!-- Question 2 -->
+        <div class="question hidden" id="question2">
+          <p>Scenario: You come across a website that asks for your credit card information, but the URL does not start with "https".</p>
+          <p>2. What should you be cautious of in this situation?</p>
+          <input type="radio" name="question2" value="A"> A. Presence of HTTPS<br>
+          <input type="radio" name="question2" value="B"> B. Length of the URL<br>
+          <input type="radio" name="question2" value="C"> C. Asking for credit card information<br>
+          <input type="radio" name="question2" value="D"> D. Use of uppercase letters in the URL<br>
+          <button type="button"   onclick="showNextQuestion(3)">Next</button>
+        </div>
+  
+        <!-- Question 3 -->
+        <div class="question hidden" id="question3">
+          <p>Scenario: You receive an email asking you to urgently verify your account by clicking on a link, or your account will be suspended.</p>
+          <p>3. What should you do in this situation?</p>
+          <input type="radio" name="question3" value="A"> A. Click on the link to verify your account<br>
+          <input type="radio" name="question3" value="B"> B. Ignore the email<br>
+          <input type="radio" name="question3" value="C"> C. Forward the email to others<br>
+          <input type="radio" name="question3" value="D"> D. Report the email as phishing<br>
+          <button type="button"   onclick="showNextQuestion(4)">Next</button>
+        </div>
+  
+        <!-- Question 4 -->
+        <div class="question hidden" id="question4">
+          <p>Scenario: You receive a message on social media from a friend asking for your personal information to join a contest.</p>
+          <p>4. What should you do in this situation?</p>
+          <input type="radio" name="question4" value="A"> A. Share your personal information with your friend<br>
+          <input type="radio" name="question4" value="B"> B. Ask for more details about the contest<br>
+          <input type="radio" name="question4" value="C"> C. Report the message as suspicious<br>
+          <input type="radio" name="question4" value="D"> D. Forward the message to others<br>
+          <button type="button"   onclick="showNextQuestion(5)">Next</button>
+        </div>
+  
+        <!-- Question 5 -->
+        <div class="question hidden" id="question5">
+          <p>Scenario: You're on a website and want to check its security. What should you look for in the URL?</p>
+          <p>5. What indicates a secure connection?</p>
+          <input type="radio" name="question5" value="A"> A. Presence of "http://" in the URL<br>
+          <input type="radio" name="question5" value="B"> B. Presence of "https://" in the URL<br>
+          <input type="radio" name="question5" value="C"> C. Length of the URL<br>
+          <input type="radio" name="question5" value="D"> D. Use of special characters in the URL<br>
+          <button type="button"   onclick="showNextQuestion(6)">Next</button>
+        </div>
+  
+        <!-- Question 6 -->
+        <div class="question hidden" id="question6">
+          <p>Scenario: You receive an email from a sender claiming to be a government official, requesting your personal information.</p>
+          <p>6. What should you do if you suspect this email is a phishing attempt?</p>
+          <input type="radio" name="question6" value="A"> A. Provide your personal information<br>
+          <input type="radio" name="question6" value="B"> B. Reply to the email asking for more details<br>
+          <input type="radio" name="question6" value="C"> C. Report the email as phishing<br>
+          <input type="radio" name="question6" value="D"> D. Share the email with others<br>
+          <button type="button"   onclick="showNextQuestion(7)">Next</button>
+        </div>
+  
+        <!-- Question 7 -->
+        <div class="question hidden" id="question7">
+          <p>Scenario: You receive a text message from an unknown number with a link asking you to claim a prize.</p>
+          <p>7. What should you do in this situation?</p>
+          <input type="radio" name="question7" value="A"> A. Click on the link to claim the prize<br>
+          <input type="radio" name="question7" value="B"> B. Reply to the text message<br>
+          <input type="radio" name="question7" value="C"> C. Forward the text message to others<br>
+          <input type="radio" name="question7" value="D"> D. Delete the text message and block the number<br>
+          <button type="button"   onclick="showNextQuestion(8)">Next</button>
+        </div>
+  
+        <!-- Question 8 -->
+        <div class="question hidden" id="question8">
+          <p>Scenario: You come across a website that asks for your login credentials and displays a lock icon in the address bar.</p>
+          <p>8. What does the lock icon indicate?</p>
+          <input type="radio" name="question8" value="A"> A. The website is secure<br>
+          <input type="radio" name="question8" value="B"> B. The website is not secure<br>
+          <input type="radio" name="question8" value="C"> C. The website is a phishing site<br>
+          <input type="radio" name="question8" value="D"> D. The website is under maintenance<br>
+          <button type="button"   onclick="showNextQuestion(9)">Next</button>
+        </div>
+  
+        <!-- Question 9 -->
+        <div class="question hidden" id="question9">
+          <p>Scenario: You receive an email with a link claiming to offer a free gift card if you click on it.</p>
+          <p>9. What should you be cautious of in this situation?</p>
+          <input type="radio" name="question9" value="A"> A. The promise of a free gift card<br>
+          <input type="radio" name="question9" value="B"> B. The sender's email address<br>
+          <input type="radio" name="question9" value="C"> C. The length of the email<br>
+          <input type="radio" name="question9" value="D"> D. Clicking on the link<br>
+          <button type="button"   onclick="showNextQuestion(10)">Next</button>
+        </div>
+  
+        <!-- Question 10 -->
+        <div class="question hidden" id="question10">
+          <p>Scenario: You receive an email asking you to verify your account information, and the link provided leads you to a website that has a domain name similar to your bank's website, but with an extra letter added to the end.</p>
+          <p>10. What is a telltale sign of a phishing URL?</p>
+          <input type="radio" name="question10" value="A"> A. Presence of HTTPS<br>
+          <input type="radio" name="question10" value="B"> B. Use of well-known domain extensions<br>
+          <input type="radio" name="question10" value="C"> C. Use of misspelled domain names<br>
+          <input type="radio" name="question10" value="D"> D. Use of uppercase letters<br>
+          <button type="submit"  >Submit Quiz</button>
+        </div>
+      </form>
+   
+      <div id="result"></div>
+      <canvas id="threatChart"></canvas>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    var currentQuestion = 1;
+    var totalQuestions = 10; // Total number of questions
+    var incorrectQuestions = [];
+
+    function showNextQuestion(nextQuestion) {
+      document.getElementById('question' + currentQuestion).classList.add('hidden');
+      currentQuestion = nextQuestion;
+      if (currentQuestion === totalQuestions) {
+        document.getElementById('question' + currentQuestion).querySelector('button').innerText = 'Submit Quiz';
+      }
+      document.getElementById('question' + currentQuestion).classList.remove('hidden');
+    }
+
+    document.getElementById('quiz-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var score = 0;
+
+      // Grading answers
+      var answers = {
+        'question1': 'D',
+        'question2': 'A',
+        'question3': 'D',
+        'question4': 'C',
+        'question5': 'B',
+        'question6': 'C',
+        'question7': 'D',
+        'question8': 'A',
+        'question9': 'D',
+        'question10': 'C'
+      };
+
+      for (var question in answers) {
+        var selectedOption = document.querySelector('input[name="' + question + '"]:checked');
+        if (selectedOption) {
+          if (selectedOption.value === answers[question]) {
+            score++;
+          } else {
+            incorrectQuestions.push(question);
+          }
+        }
+      }
+
+      // Displaying score
+      var resultContainer = document.getElementById('result');
+      resultContainer.innerHTML = '<h2>Your Score: ' + score + ' / ' + totalQuestions + '</h2>';
+      document.getElementById('question' + currentQuestion).classList.add('hidden');
+      // Display recommendations for failed questions
+      if (incorrectQuestions.length > 0) {
+        var recommendationMessage = 'Recommendations for failed questions:\n\n';
+        incorrectQuestions.forEach(function(question) {
+          var questionNumber = question.slice(-1);
+          var questionText = document.getElementById('question' + questionNumber).querySelector('p:nth-of-type(2)').innerText;
+          var selectedAnswer = document.querySelector('input[name="' + question + '"]:checked').parentNode.innerText.trim();
+          var completeAnswer = answers[question];
+
+          recommendationMessage += 'Question ' + questionNumber + ': ' + questionText + '\n';
+          recommendationMessage += 'Your Answer: ' + selectedAnswer + '\n';
+          recommendationMessage += 'Correct Answer: ' + completeAnswer + '\n\n';
+        });
+        alert(recommendationMessage);
+        // document.getElementById('recommendationModalBody').innerHTML = recommendationMessage +'\n';
+        // var recommendationModal = new bootstrap.Modal(document.getElementById('recommendationModal'));
+        // recommendationModal.show();
+
+      } else {
+        alert('Congratulations! You answered all questions correctly.');
+      }
+
+      // Determining threat level
+      var threatLevel = '';
+      if (score >= 7) {
+        threatLevel = 'Low Threat';
+      } else if (score >= 4) {
+        threatLevel = 'Moderate Threat';
+      } else {
+        threatLevel = 'High Threat';
+      }
+      resultContainer.innerHTML += '<p>Threat Level: ' + threatLevel + '</p>';
+
+      // Update threat level chart
+      updateChart(score);
+    });
+
+    function updateChart(score) {
+      var threatChart = document.getElementById('threatChart').getContext('2d');
+      var chart = new Chart(threatChart, {
+        type: 'bar',
+        data: {
+          labels: ['High Threat', 'Moderate Threat', 'Low Threat'],
+          datasets: [{
+            label: 'Threat Level',
+            data: [0, 0, 0],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+
+      // Update data based on score
+      if (score >= 7) {
+        chart.data.datasets[0].data[2] = 1; // Low Threat
+      } else if (score >= 4) {
+        chart.data.datasets[0].data[1] = 1; // Moderate Threat
+      } else {
+        chart.data.datasets[0].data[0] = 1; // High Threat
+      }
+      chart.update();
+    }
+  </script>
+    {% endblock %}

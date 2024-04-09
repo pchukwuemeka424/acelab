@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .box{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          border-radius: 5px;
+          padding: 20px;
+          width: 23%;
+          margin: 10px;
+
+          
+    }
+</style>
+  <div class="container my-2">
+
+    <div class="row">
+        <div class="col-sm-6 p-4 bg-white ">
+         <div>
+        <div class="my-3">
+         <div class="h4" style="font-weight: 800;"> Machine Learning(ML) Phishing Detection </div>
+         <div class="h6">Detect phishing or fraudulent links via Machine Learning Approach.</div>
+        </div>
+         </div>
+         <form action="/predict" method="post" onsubmit="showLoading()">
+         <div class="input-group mb-3">
+             <input type="text" class="search-box form-control form-control-lg" placeholder="Please Enter Url Website" name="url" required>
+             <button class="btn btn-dark" type="submit"><i class="	fa fa-globe" style="font-size:14px"></i> Scan Website</button>
+           </div>
+         </form>
+         <em>Analyse suspicious domains, IPs and URLs to detect malware and other breaches</em>
+        </div>
+ 
+  </div>
+<!-- <h1>{{check_rep}}</h1> -->
+  <div class="container bg-white ">
+    <div class="h4">Result</div>
+            <table class="table table-responsive table-hover">
+                <tr>
+                    <td><i class="	fa fa-globe text-dark" style="font-size:17px"> {{query}}</i></td>
+                    <td>  Status:  {% if prediction | join(', ') == "Safe" %}
+                        <div class="badge rounded-pill bg-success">Safe</div>
+                    {% else %}
+                        <div class="badge rounded-pill bg-danger">Unsafe</div>
+                    {% endif %}</td>
+                </tr>
+
+            </table>
+        <div class="row p-4 shadow-lg">
+            
+
+                           <div class="box ">
+                            Domain: 
+                            <div class="small text-dark">
+                                {{query}}
+                            </div>
+                           </div>
+
+                           <div class="box ">
+                        Sub Domain:
+                    <div class="small text-dark">
+                        {{extract_sub}}
+                    </div>
+                    </div>
+
+                    <div class="box ">
+                    Domain Path: 
+                    <div class="small text-dark">
+                        {{paths}}
+                    </div>
+                    </div>
+                    <div class="box ">
+                    Page Title: 
+                    <div class="small text-dark">
+                        {{ip_reputation.page_title}}
+                    </div>
+                    </div>
+                     <div class="box ">
+                    Meta Content: 
+                    <div class="small text-dark">
+                        {{ip_reputation.technologies}}
+                        </div>
+                    </div>
+
+                    <div class="box ">
+                    Category: 
+                    <div class="small text-dark">
+                        {{ip_reputation.category}}
+                        </div>
+                    </div>
+                    <div class="box ">
+                    Content Type: 
+                    <div class="small text-dark">
+                        {{ip_reputation.content_type}}
+                        </div>
+                    </div>
+
+                    <div class="bg-light p-4 shadow-lg col-sm-12">
+                    Registrar 
+                            <div class="small">{{ whois_info['registrar'] }}</div>
+                    {% if whois_info %}
+                       
+                    <div>Server <div class="small">{{Domain_server}}</div></div>
+                    <div>Creation Date: <div class="small">{{ whois_info['creation_date'] }}</div></div>
+                    <div>Expiration Date: <div class="small">{{ whois_info['expiration_date'] }}</div></div>
+                    <div>Domain Age: <div class="small">{{ip_reputation.domain_age.human}}</div></div>
+                    
+                    <!-- Add more WHOIS information fields as needed -->
+                {% else %}
+                    <li>No WHOIS information available</li>
+                {% endif %}
+                </div>
+
+                <div class="box ">
+                Domain IP Address: 
+                        <div class="small">{{is_ip}}</div>
+                        </div>
+
+                        <div class="box ">
+                        Mx Record: 
+                        <div class="small">{{ip_reputation.mx_records}}</div>
+                        </div>
+
+                        <div class="box ">
+                        Nx Record: 
+                        <div class="small">{{ip_reputation.ns_records}}</div>
+                        </div>
+
+                        <div class="box ">
+                        Country Code:  
+                    <div class="small text-dark">
+                   {{check_rep.data.countryCode}}
+                        </div>
+                        </div>
+
+                        <div class="box ">
+                            Last Reported : 
+                        <div class="small text-dark">
+                       {{check_rep.data.lastReportedAt}}
+                            </div>
+                            </div>
+
+                            <div class="box ">
+                            Internet Service Provider(ISP): 
+                        <div class="small text-dark">
+                       {{check_rep.data.isp}}
+                            </div>
+                            </div>
+
+
+                        <div class="box ">
+                            Secured(SSL): 
+                    <div class="small text-dark">
+                    {% if has_https == True %}
+                         Yes <i class="fa fa-shield" style="font-size:14px;color:green"></i>
+                    {% else %}
+                          No <i class="	fa fa-times-circle" style="font-size:14px;color:red"></i>
+                      {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="box ">
+                    Lenght of URl: 
+                    <div class="small text-dark">
+                        {{lenght}}
+                    </div>
+                    </div>
+                    
+                    <div class="box ">
+                    Special Character: 
+                        <div class="small text-dark">
+                            {{special}}
+                        </div>
+                      </div>
+
+                      <div class="box ">
+                        Number of Special Character: 
+                        <div class="small text-dark">
+                            {{count_special}}
+                        </div>
+                        </div>
+
+                        <div class="box ">
+                        All Special Character: 
+                        <div class="small text-dark">
+                            {{list_special}}
+                        </div>
+                        </div>
+
+                        <div class="box ">
+                        Shorten Url: 
+                    <div class="small text-dark">
+                    {% if shorten == True %}
+                         Yes
+                    {% else %}
+                          No <span class="spinner-grow spinner-grow-sm text-success"></span>
+                      {% endif %}
+                        </div>
+                    </div>
+                    
+
+                    <div class="box ">
+                    IP Address in Domain: 
+                    <div class="small text-dark">
+                    {% if ip_address == True %}
+                         Yes
+                    {% else %}
+                          No
+                      {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="box ">
+                    IFrame 
+                        <div class="small">
+                            {% if iframe == True %}
+                            Yes
+                       {% else %}
+                             No
+                         {% endif %}
+                        </div>
+                   
+                            
+
+    {% endblock %}
+
+   

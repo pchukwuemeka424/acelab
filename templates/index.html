@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div style="height: 70vh;" class="d-flex align-items-center justify-content-center">
+   <div class="col-sm-6 p-4 bg-white shadow-lg rounded-3">
+    <div>
+   <div class="my-3">
+    <div class="h4" style="font-weight: 800;"> Machine Learning(ML) Phishing Detection </div>
+    <div class="h6">Detect phishing or fraudulent links via Machine Learning Approach.</div>
+   </div>
+    </div>
+    <form action="/predict" method="post" onsubmit="showLoading()">
+    <div class="input-group mb-3">
+        <input type="search" class="search-box form-control form-control-lg" placeholder="Please Enter Url Website" name="url" required>
+        <button class="btn btn-dark" type="submit"><i class="	fa fa-globe" style="font-size:14px"></i> Scan Website</button>
+      </div>
+    </form>
+    <small>Designed By: Prince Chukwuemeka<br> Student ID: s5548386 </small>
+   </div>
+   
+  
+
+</div>
+
+
+
+<!-- Loading Indicator -->
+
+
+
+{% endblock %}
+
+
+
