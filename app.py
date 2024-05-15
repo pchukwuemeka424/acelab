@@ -114,7 +114,7 @@ def https_token(url):
          print("URL does not contain 'https://'")
 
 # Load the trained model from file
-loaded_model = pickle.load(open('train_model.pkl', 'rb'))
+loaded_model = pickle.load(open('machine_train_model.pkl', 'rb'))
 
 # Function to preprocess the URL
 def preprocess_url(url):
