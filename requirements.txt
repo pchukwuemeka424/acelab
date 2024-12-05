@@ -63,7 +63,6 @@ urllib3==2.2.1
 virtualenv==20.25.1
 webcolors==1.13
 Werkzeug==3.0.1
-pip install --upgrade pip
 whois21==1.4.5
 wsproto==1.2.0
 WTForms==3.1.2
